@@ -59,13 +59,11 @@ public enum RootMenuEnum
             },
 ```
 
-
-
 21. Перечисление заканчивается на Enum. Структура на Struct. [Windows-C_Sharp-Coding-Style](https://github.com/radyalabs/Windows-C_Sharp-Coding-Style)
-
+```C#
  public enum ColorsEnum { }
  public struct RectangleStruct { }
-  
+  ```
   
   
 Файл [EditorConfig](https://editorconfig.org «Домашняя страница EditorConfig») (`.editorconfig`) находится в корне репозитория среды выполнения, обеспечивая автоматическое форматирование C# в соответствии с приведенными выше рекомендациями.
