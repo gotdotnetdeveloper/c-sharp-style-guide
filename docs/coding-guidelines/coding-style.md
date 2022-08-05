@@ -7,9 +7,9 @@ C# Coding Style
 3. Мы используем `_camelCase` для внутренних и частных полей и используем `readonly`, где это возможно. Префикс внутренних и частных полей экземпляра — `_`, статических полей — `s_`, а статических полей потока — `t_`. При использовании в статических полях `readonly` должно стоять после `static` (например, `static readonly`, а не `readonly static`). Публичные поля следует использовать с осторожностью и использовать PascalCasing без префикса.
 4. Мы избегаем «this.», если в этом нет крайней необходимости.
 5. Мы всегда указываем видимость, даже если она установлена ​​по умолчанию (например,
-   `частная строка _foo`, а не `строка _foo`). Видимость должна быть первым модификатором (например,
-   «public abstract», а не «public abstract»).
-6. Импорт пространства имен должен быть указан в начале файла, *снаружи*
+   `private string _foo`, а не `string _foo`). Видимость должна быть первым модификатором (например,
+   `public abstract`, а не `public abstract`).
+6. Импорт пространства имен должен быть указан в начале файла, внешний
    `namespace`, и должны быть отсортированы в алфавитном порядке, за исключением пространств имен `System.*`, которые должны быть размещены поверх всех остальных.
 7. Избегайте одновременно более одной пустой строки. Например, нет двух
    пустые строки между элементами типа.
@@ -134,4 +134,4 @@ namespace System.Collections.Generics
 }
 ```
 
-For other languages, our current best guidance is consistency. When editing files, keep new code and changes consistent with the style in the files. For new files, it should conform to the style for that component. If there is a completely new component, anything that is reasonably broadly accepted is fine. For script files, please refer to the scripting blog for [tips](https://devblogs.microsoft.com/scripting/tag/powertip) and [best practices](https://devblogs.microsoft.com/scripting/tag/best-practices).
+Для других языков в настоящее время нашим лучшим руководством является согласованность. При редактировании файлов следите за тем, чтобы новый код и изменения соответствовали стилю файлов. Для новых файлов он должен соответствовать стилю этого компонента. Если есть совершенно новый компонент, подойдет все, что достаточно широко принято. Файлы скриптов см. в блоге скриптов, где можно найти [советы](https://devblogs.microsoft.com/scripting/tag/powertip) и [лучшие практики](https://devblogs.microsoft.com/scripting/tag /лучшие практики).
