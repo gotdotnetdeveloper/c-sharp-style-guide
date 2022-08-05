@@ -1,42 +1,41 @@
 C# Coding Style
 ===============
+Общее правило, которому мы следуем, — «использовать настройки Visual Studio по умолчанию».
 
-The general rule we follow is "use Visual Studio defaults".
+1. Мы используем фигурные скобки [в стиле Allman](http://en.wikipedia.org/wiki/Indent_style#Allman_style), где каждая фигурная скобка начинается с новой строки. Однострочный блок операторов может быть без фигурных скобок, но этот блок должен иметь правильный отступ на своей собственной строке и не должен быть вложен в другие блоки операторов, использующие фигурные скобки (подробнее см. правило 18). Единственным исключением является то, что оператор «using» может быть вложен в другой оператор «using», начиная со следующей строки на том же уровне отступа, даже если вложенный оператор «using» содержит контролируемый блок.
+2. Мы используем четыре пробела отступа (без табуляции).
+3. Мы используем `_camelCase` для внутренних и частных полей и используем `readonly`, где это возможно. Префикс внутренних и частных полей экземпляра — `_`, статических полей — `s_`, а статических полей потока — `t_`. При использовании в статических полях `readonly` должно стоять после `static` (например, `static readonly`, а не `readonly static`). Публичные поля следует использовать с осторожностью и использовать PascalCasing без префикса.
+4. Мы избегаем «этого», если в этом нет крайней необходимости.
+5. Мы всегда указываем видимость, даже если она установлена ​​по умолчанию (например,
+   `частная строка _foo`, а не `строка _foo`). Видимость должна быть первым модификатором (например,
+   «public abstract», а не «public abstract»).
+6. Импорт пространства имен должен быть указан в начале файла, *снаружи*
+   `namespace`, и должны быть отсортированы в алфавитном порядке, за исключением пространств имен `System.*`, которые должны быть размещены поверх всех остальных.
+7. Избегайте одновременно более одной пустой строки. Например, нет двух
+   пустые строки между элементами типа.
+8. Избегайте ложных свободных пространств.
+   Например, избегайте `if (someVar == 0)...`, где точками отмечены ложные пробелы.
+   Рассмотрите возможность включения «Просмотр пробелов (Ctrl+R, Ctrl+W)» или «Правка -> Дополнительно -> Просмотр пробелов», если вы используете Visual Studio для облегчения обнаружения.
+9. Если стиль файла отличается от этих рекомендаций (например, приватные члены называются `m_member`
+   а не `_member`), существующий стиль в этом файле имеет приоритет.
+10. Мы используем «var» только в том случае, если тип явно назван справа, обычно из-за «new» или явного приведения, например. `var stream = new FileStream(...)`, а не `var stream = OpenStandardInput()`.
+    - Точно так же `new()` с целевым типом может использоваться только тогда, когда тип явно назван слева, в операторе определения переменной или операторе определения поля. например `FileStream stream = new(...);`, но не `stream = new(...);` (где тип был указан в предыдущей строке).
+11. Мы используем ключевые слова языка вместо типов BCL (например, `int, string, float` вместо `Int32, String, Single` и т. д.) как для ссылок на типы, так и для вызовов методов (например, `int.Parse` вместо ` Int32.Parse`). Примеры см. в выпуске [#13976](https://github.com/dotnet/runtime/issues/13976).
+12. Мы используем PascalCasing для именования всех наших постоянных локальных переменных и полей. Единственным исключением является код взаимодействия, где постоянное значение должно точно совпадать с именем и значением кода, который вы вызываете через взаимодействие.
+13. Мы используем PascalCasing для всех имен методов, включая локальные функции.
+14. Мы используем ```nameof(...)``` вместо ```"..."``` везде, где это возможно и уместно.
+15. Поля должны быть указаны вверху в объявлениях типов.
+16. При включении символов, отличных от ASCII, в исходный код используйте escape-последовательности Unicode (\uXXXX) вместо буквенных символов. Буквенные символы, отличные от ASCII, иногда искажаются инструментами или редакторами.
+17. При использовании меток (для перехода) делайте отступ метки на единицу меньше текущего отступа.
+18. При использовании одного оператора if мы следуем этим соглашениям:
+    - Никогда не используйте однострочную форму (например: `if (source == null) throw new ArgumentNullException("source");`)
+    - Использование фигурных скобок всегда допускается и требуется, если какой-либо блок составного оператора `if`/`else if`/.../`else` использует фигурные скобки или если тело одного оператора занимает несколько строк.
+    - Фигурные скобки могут быть опущены только в том случае, если тело *каждого* блока, связанного с составным оператором `if`/`else if`/.../`else`, размещено на одной строке.
+19. Сделайте все внутренние и частные типы статическими или запечатанными, если не требуется производных от них. Как и в случае с любой деталью реализации, их можно изменить, если/когда потребуется деривация в будущем.
 
-1. We use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces, where each brace begins on a new line. A single line statement block can go without braces but the block must be properly indented on its own line and must not be nested in other statement blocks that use braces (See rule 18 for more details). One exception is that a `using` statement is permitted to be nested within another `using` statement by starting on the following line at the same indentation level, even if the nested `using` contains a controlled block.
-2. We use four spaces of indentation (no tabs).
-3. We use `_camelCase` for internal and private fields and use `readonly` where possible. Prefix internal and private instance fields with `_`, static fields with `s_` and thread static fields with `t_`. When used on static fields, `readonly` should come after `static` (e.g. `static readonly` not `readonly static`).  Public fields should be used sparingly and should use PascalCasing with no prefix when used.
-4. We avoid `this.` unless absolutely necessary.
-5. We always specify the visibility, even if it's the default (e.g.
-   `private string _foo` not `string _foo`). Visibility should be the first modifier (e.g.
-   `public abstract` not `abstract public`).
-6. Namespace imports should be specified at the top of the file, *outside* of
-   `namespace` declarations, and should be sorted alphabetically, with the exception of `System.*` namespaces, which are to be placed on top of all others.
-7. Avoid more than one empty line at any time. For example, do not have two
-   blank lines between members of a type.
-8. Avoid spurious free spaces.
-   For example avoid `if (someVar == 0)...`, where the dots mark the spurious free spaces.
-   Consider enabling "View White Space (Ctrl+R, Ctrl+W)" or "Edit -> Advanced -> View White Space" if using Visual Studio to aid detection.
-9. If a file happens to differ in style from these guidelines (e.g. private members are named `m_member`
-   rather than `_member`), the existing style in that file takes precedence.
-10. We only use `var` when the type is explicitly named on the right-hand side, typically due to either `new` or an explicit cast, e.g. `var stream = new FileStream(...)` not `var stream = OpenStandardInput()`.
-    - Similarly, target-typed `new()` can only be used when the type is explicitly named on the left-hand side, in a variable definition statement or a field definition statement. e.g. `FileStream stream = new(...);`, but not `stream = new(...);` (where the type was specified on a previous line).
-11. We use language keywords instead of BCL types (e.g. `int, string, float` instead of `Int32, String, Single`, etc) for both type references as well as method calls (e.g. `int.Parse` instead of `Int32.Parse`). See issue [#13976](https://github.com/dotnet/runtime/issues/13976) for examples.
-12. We use PascalCasing to name all our constant local variables and fields. The only exception is for interop code where the constant value should exactly match the name and value of the code you are calling via interop.
-13. We use PascalCasing for all method names, including local functions.
-14. We use ```nameof(...)``` instead of ```"..."``` whenever possible and relevant.
-15. Fields should be specified at the top within type declarations.
-16. When including non-ASCII characters in the source code use Unicode escape sequences (\uXXXX) instead of literal characters. Literal non-ASCII characters occasionally get garbled by a tool or editor.
-17. When using labels (for goto), indent the label one less than the current indentation.
-18. When using a single-statement if, we follow these conventions:
-    - Never use single-line form (for example: `if (source == null) throw new ArgumentNullException("source");`)
-    - Using braces is always accepted, and required if any block of an `if`/`else if`/.../`else` compound statement uses braces or if a single statement body spans multiple lines.
-    - Braces may be omitted only if the body of *every* block associated with an `if`/`else if`/.../`else` compound statement is placed on a single line.
-19. Make all internal and private types static or sealed unless derivation from them is required.  As with any implementation detail, they can be changed if/when derivation is required in the future.
+Файл [EditorConfig](https://editorconfig.org «Домашняя страница EditorConfig») (`.editorconfig`) находится в корне репозитория среды выполнения, обеспечивая автоматическое форматирование C# в соответствии с приведенными выше рекомендациями.
 
-An [EditorConfig](https://editorconfig.org "EditorConfig homepage") file (`.editorconfig`) has been provided at the root of the runtime repository, enabling C# auto-formatting conforming to the above guidelines.
-
-We also use the [.NET Codeformatter Tool](https://github.com/dotnet/codeformatter) to ensure the code base maintains a consistent style over time, the tool automatically fixes the code base to conform to the guidelines outlined above.
+Мы также используем [Инструмент форматирования кода .NET](https://github.com/dotnet/codeformatter), чтобы гарантировать, что кодовая база поддерживает постоянный стиль с течением времени. Этот инструмент автоматически исправляет кодовую базу, чтобы она соответствовала рекомендациям, изложенным выше.
 
 ### Example File:
 
