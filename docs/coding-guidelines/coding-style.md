@@ -83,14 +83,7 @@ public enum RootMenuEnum
   27. Попробуйте использовать полиморфизм вместо swich/case [пример на refactoring.guru](https://refactoring.guru/ru/replace-conditional-with-polymorphism)
   28. Избегайте использования методов с более чем 5 параметрами
   29. Измените методы параметров, которые содержат более 5 параметров, на тип объекта.
-  30. (XAML) Всегда используйте имя элемента управления, которое представляет его значение (x:Name)
-```C#
-  <TextBox x:Name="TextBoxRoomValue"/>
-```
-  31. (XAML) Всегда используйте имя обработчика метода/события с префиксом �On�.
-```C#
-  <TextBlock Tap="OnTextBlockRoomFieldTapped" x:Name="TextBlockRoomField" Text="ROOMS" FontSize="42"></TextBlock>
-```
+  30. Избегайте: шуток в коде, матерных слов, смешных переменных, анегдотов.
   31. В именах классов, интерфейсов и типов значения используйте существительные, фразы на основе существительных или в некоторых случаях фразы на основе прилагательных [Правила именования](https://docs.microsoft.com/ru-ru/previous-versions/dotnet/netframework-4.0/ms229040(v=vs.100))
 
   32. По возможности в summary стоит записывать комментарии на русском
