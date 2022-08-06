@@ -59,9 +59,10 @@ public enum RootMenuEnum
             },
 ```
 
-21. Перечисление заканчивается на Enum. Структура на Struct. [Windows-C_Sharp-Coding-Style](https://github.com/radyalabs/Windows-C_Sharp-Coding-Style)
+21. Избегайте избыточного префикса или суффикса, который не дает дополнительной информации об идентификаторе.. [Windows-C_Sharp-Coding-Style](https://github.com/radyalabs/Windows-C_Sharp-Coding-Style)
 ```C#
  public enum ColorsEnum { }
+ public class CVehicle { }
  public struct RectangleStruct { }
   ```
   
