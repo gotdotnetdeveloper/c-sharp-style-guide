@@ -38,7 +38,7 @@ C# Coding Style
 Если запятой не будет - добавление запятой изменит строку, что отвлекает при ревью и может вызвать конфликты при слияниях
 Пример 1:
 ```C#
-public enum RootMenuEnum
+public enum RootMenu
 {
     None = 0,
     HomePage = 1,
