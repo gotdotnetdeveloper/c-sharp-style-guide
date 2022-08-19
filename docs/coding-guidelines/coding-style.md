@@ -87,6 +87,18 @@ public enum RootMenu
   31. В именах классов, интерфейсов и типов значения используйте существительные, фразы на основе существительных или в некоторых случаях фразы на основе прилагательных [Правила именования](https://docs.microsoft.com/ru-ru/previous-versions/dotnet/netframework-4.0/ms229040(v=vs.100))
 
   32. По возможности в summary стоит записывать комментарии на русском
+  33. Обработчики событий принято именовать с суффиксом 'On'
+
+   ```C#
+   protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            NotifyCollectionChangedEventHandler handler = CollectionChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+  ```
 
 Файл [EditorConfig](https://editorconfig.org «Домашняя страница EditorConfig») (`.editorconfig`) находится в корне репозитория среды выполнения, обеспечивая автоматическое форматирование C# в соответствии с приведенными выше рекомендациями.
 
